@@ -2005,12 +2005,22 @@ int main(int argc, char **argv)
         10406,
         10415};
     int count = 0;
-    for (int i=0; i < (sizeof(numbers) / sizeof(int))-1; ++i)
+    int count1 = 0;
+    for (int i = 0; i < (sizeof(numbers) / sizeof(int)) - 1; ++i)
     {
         if (numbers[i + 1] > numbers[i])
         {
-          ++count;
+            ++count;
         }
     }
     printf("%i \n", count);
+
+    for (int i = 0; i < (sizeof(numbers) / sizeof(int)) - 3; ++i)
+    {
+        if (numbers[i + 1] + numbers[i + 2] + numbers[i + 3] > numbers[i] + numbers[i + 1] + numbers[i + 2])
+        {
+            ++count1;
+        }
+    }
+    printf("%i \n", count1);
 }
