@@ -6,6 +6,7 @@ int main(int argc, char **argv)
     int horizontal = 0;
     int depth = 0;
     int output = 0;
+    int aim = 0;
     char *inputs[] = {
         "forward 6",
         "forward 8",
@@ -1026,6 +1027,31 @@ int main(int argc, char **argv)
     printf("%i\n", horizontal);
     printf("%i\n", depth);
     output = horizontal * depth;
-    printf("%i \n", output);
+    printf("First output: %i \n", output);
+    horizontal = 0;
+    depth = 0;
+    output = 0;
+    aim = 0;
+
+    for (int i = 0; i <= sizeof(inputs) / sizeof(char*) - 1; ++i)
+    {  int ASCII = (inputs[i][strlen(inputs[i])-1]);
+       int amount = ASCII - '0'; 
+        switch (inputs[i][0])
+        {
+        case 'd':
+        aim += amount;
+        break;
+        case 'u':
+        aim -= amount;
+        break;
+        case 'f':
+        horizontal += amount;
+        depth += aim * amount;
+        }
+        output = horizontal * depth;
+    }
+    printf("%i\n", horizontal);
+    printf("%i\n", depth);
+    printf("Second output %i\n", output);
     return 0;
 }
