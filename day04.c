@@ -26,7 +26,9 @@ bool doesColumnWin(int *column)
 bool doesBoardWin(int *bingoboard)
 {
     for (int row = 0; row < 5; ++row)
-    {
+    {if(bingoboard[0] == -2){
+        return false;
+    }
         if (doesRowWin(bingoboard + 5 * row))
         {
             return true;
@@ -2585,11 +2587,9 @@ int main(int argc, char **argv)
                     printf("Value: %i \n", output * drawnNumber);
                     return 0;
                 }
-                for (int z = 0; z < 25; ++z)
-                {
+                
                     int *currentboard = bingoboards + x * 25;
-                    currentboard[z] = 99;
-                }
+                    currentboard[0] = -2;
             }
         }
     }
