@@ -573,5 +573,6 @@ int main(int argc, char **argv)
         }
     }
     printf("%i\n", counter);
+    free(linesarray);
     return 0;
 }
