@@ -4,7 +4,7 @@ int main(int argc, char **argv)
 {
 
     int input[] = {3, 4, 3, 1, 2};
-    int *simulation = malloc(sizeof(input) / sizeof(*input) * sizeof(int));
+    int *simulation = calloc(sizeof(input) / sizeof(*input), sizeof(int));
 
     for (int i = 0; i < sizeof(input) / sizeof(*input); ++i)
     {
@@ -13,24 +13,34 @@ int main(int argc, char **argv)
     }
     printf("\n");
     int eggcounter = 0;
-    int position_egg = 0;
+    int *position_egg = 0;
+
     for (int j = 0; j < 5; ++j)
     {
-        for (int i = 0; i < 5+j; ++i)
+        printf("After %i days: ", j);
+
+        for (int i = 0; i < 5; ++i)
         {
             simulation[i] -= 1;
             printf("%i", simulation[i]);
-            if(simulation[i] == 0) {
+
+            if (simulation[i] == 0)
+            {
                 eggcounter += 1;
-                position_egg = simulation[i];
+                position_egg = simulation + i;
             }
-            
-            
         }
         printf("\n");
-        simulation[position_egg] = 6;        
+        printf("%i", eggcounter);
+        simulation = realloc(simulation, sizeof(simulation) + sizeof(int) * eggcounter);
+        for(int x = 0; x<eggcounter; ++x){
+            simulation[5+x] = 8;
+        }
+        
+        position_egg[0] = 7;
+        eggcounter = 0;
+        
     }
-    printf("%i", eggcounter);
 
     return 0;
 }
