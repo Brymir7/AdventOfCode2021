@@ -14,12 +14,13 @@ int main(int argc, char **argv)
     printf("\n");
     int eggcounter = 0;
     int *position_egg = 0;
-
+    int length_simulation = sizeof(simulation) / sizeof(*simulation);
+    
     for (int j = 0; j < 5; ++j)
     {
         printf("After %i days: ", j);
 
-        for (int i = 0; i < 5; ++i)
+        for (int i = 0; i < 6; ++i)
         {
             simulation[i] -= 1;
             printf("%i", simulation[i]);
@@ -32,9 +33,9 @@ int main(int argc, char **argv)
         }
         printf("\n");
         printf("%i", eggcounter);
-        simulation = realloc(simulation, sizeof(simulation) + sizeof(int) * eggcounter);
+        
         for(int x = 0; x<eggcounter; ++x){
-            simulation[5+x] = 8;
+            simulation[length_simulation+x] = 8;
         }
         
         position_egg[0] = 7;
