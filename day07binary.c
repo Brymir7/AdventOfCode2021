@@ -22,13 +22,24 @@ int max_value(int *a, int length_a)
     return value;
 }
 
-int binary_search(int* a, int min, int max, int bestposition)
+int binary_search(int min, int max, int *a, int length_a)
 {
-    int mid = (min + max) / 2;
-    if(a[mid] == bestposition){
-        return mid;
+    int middle = (min + max) / 2;
+    int fuelcost1 = fuelcost(middle - 1, a, length_a);
+    int fuelcost2 = fuelcost(middle, a, length_a);
+    if ((max - min) == 1)
+    {
+        return middle;
     }
-    return 0;
+    if (fuelcost1 < fuelcost2)
+    {
+        return binary_search(0, middle - 1, a, length_a);
+    }
+    else if (fuelcost2 < fuelcost1)
+    {
+        return binary_search(middle, max, a, length_a);
+    }
+    return -1;
 }
 int main(int argc, char **argv)
 {
@@ -40,11 +51,9 @@ int main(int argc, char **argv)
         temporary_array[i] = input[i];
         printf("%i ", temporary_array[i]);
     }
-    int best_position = 0;
     int max_value1 = max_value(temporary_array, length_input);
-    int middle_value = 0;
-    
-    
+    int best_position = binary_search(0, max_value1, temporary_array, length_input);
+    printf("%i \n", best_position);
     int output_fuelcost = fuelcost(best_position, temporary_array, length_input);
     printf("%i", output_fuelcost);
     return 0;
