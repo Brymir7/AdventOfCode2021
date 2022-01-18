@@ -21,7 +21,34 @@ int max_value(int *a, int length_a)
     }
     return value;
 }
+void swap(int* a, int* b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+void print_integer_array(int *a, int length)
+{
+    for (int i = 0; i < length; ++i)
+    {
+        printf("%i ", a[i]);
+    }
+    printf("\n");
+}
+void bubblesort(int *a, int length)
+{
 
+    for (int i = 0; i < length; ++i)
+    {
+        for (int j = 0; j < length - i; ++j)
+        {
+            if (a[j] > a[j + 1])
+            {
+                swap(a + j, a + j + 1);  // Swap addresses not actual values
+            }
+        }
+    }
+}
 int binary_search(int min, int max, int *a, int length_a)
 {
     int middle = (min + max) / 2;
@@ -29,7 +56,7 @@ int binary_search(int min, int max, int *a, int length_a)
     int fuelcost2 = fuelcost(middle, a, length_a);
     if ((max - min) == 1)
     {
-        return middle;
+        return 1;
     }
     if (fuelcost1 < fuelcost2)
     {
@@ -51,6 +78,9 @@ int main(int argc, char **argv)
         temporary_array[i] = input[i];
         printf("%i ", temporary_array[i]);
     }
+    printf("\n");
+    bubblesort(temporary_array, length_input);
+    print_integer_array(temporary_array, length_input);
     int max_value1 = max_value(temporary_array, length_input);
     int best_position = binary_search(0, max_value1, temporary_array, length_input);
     printf("%i \n", best_position);
