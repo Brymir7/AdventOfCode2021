@@ -1068,6 +1068,7 @@ int main(int argc, char **argv)
     int Pconsumption = value * value2;
     printf("%i\n", Pconsumption);
 
-    
+
+    }
     return 0;
 }
