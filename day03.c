@@ -1069,6 +1069,6 @@ int main(int argc, char **argv)
     printf("%i\n", Pconsumption);
 
 
-    }
+    
     return 0;
 }
